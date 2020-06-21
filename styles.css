@@ -43,6 +43,12 @@ body{
     color: blue;
     cursor: pointer;
 }
+.todo-items .ctrlbar > button:disabled {
+    color:gray;
+}
+.todo-items  .ctrlbar > button:disabled:hover {
+    font-weight: unset;
+}
 .todo-items  .ctrlbar > button:hover {
     font-weight: bolder;
 }
