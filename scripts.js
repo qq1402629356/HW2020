@@ -11,6 +11,7 @@ function renderEditor() {
         let newTask = {
             title: inputEl.value,
             done: false,
+            star: false
         };
 
         inputEl.value = "";
@@ -69,7 +70,7 @@ function renderTaskItems() {
         titleEl.innerText = task.title;
         itemEl.append(titleEl);
 
-        let ctrlbarEl = renderTaskCtrlBar(tasks, i);
+        let ctrlbarEl = renderTaskCtrlBar(tasks, i, task);
 
         itemEl.append(ctrlbarEl);
 
@@ -78,9 +79,21 @@ function renderTaskItems() {
 
 }
 
-function renderTaskCtrlBar(tasks, taskIdx) {
+function renderTaskCtrlBar(tasks, taskIdx, task) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
+
+    let starEl = document.createElement("button");
+    starEl.innerText = "☆";
+    starEl.className = "star";
+
+    starEl.innerText = task.star ? "★" : "☆";
+
+    starEl.addEventListener('click', function () {
+        this.innerText = this.innerText == "☆" ? "★" : "☆";
+        task.star = this.innerText == "☆" ? false : true
+    })
+    ctrlbarEl.append(starEl);
 
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
